@@ -9,6 +9,7 @@ public class honey {
 	public static void startSshServer() throws IOException {
 
 		SshServer sshServer = SshServer.setUpDefaultServer();
+
 		sshServer.setPort(22);
 		sshServer.setPasswordAuthenticator(new PasswordAuthenticator() {
 			@Override
@@ -16,6 +17,7 @@ public class honey {
 
 				System.out.println(username);
 				System.out.println(password);
+
 				return "ssh".equals(username) && "secret".equals(password);
 			}
 		});

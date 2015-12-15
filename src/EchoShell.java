@@ -57,21 +57,32 @@ public class EchoShell extends Thread implements Command {
 
 	@Override
 	public void run() {
+		String Command = "";
 		System.out.println("start");
+		OSsimulator OsObjec = new OSsimulator(out);
+
 		BufferedReader r = new BufferedReader(new InputStreamReader(in));
 		try {
 			while (!Thread.currentThread().isInterrupted()) {
+				int c;
 
-				String s = r.readLine();
-				if (s == null) {
-					return;
+				while (((c = r.read()) != -1) && (!Thread.currentThread().isInterrupted())) {
+					char ch = (char) c;
+					System.out.println(ch);
+					out.write(ch);
+					if (ch == '\n') {
+						OsObjec.parse(Command);
+						Command = "";
+						out.write('\r\n');
+
+					} else {
+						Command += ch;
+					}
+
+					out.flush();
+
 				}
-				System.out.println(s);
-				out.write((s + "\r\n").getBytes());
-				out.flush();
-				if ("exit".equals(s)) {
-					return;
-				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,5 +91,4 @@ public class EchoShell extends Thread implements Command {
 			callback.onExit(0);
 		}
 	}
-
 }
