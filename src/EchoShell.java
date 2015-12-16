@@ -73,7 +73,7 @@ public class EchoShell extends Thread implements Command {
 					if (ch == '\n') {
 						OsObjec.parse(Command);
 						Command = "";
-						out.write('\r\n');
+						out.write("\r\n".getBytes());
 
 					} else {
 						Command += ch;
