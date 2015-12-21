@@ -10,18 +10,10 @@ public class honey {
 
 		SshServer sshServer = SshServer.setUpDefaultServer();
 
-		sshServer.setPort(22);
-		sshServer.setPasswordAuthenticator(new PasswordAuthenticator() {
-			@Override
-			public boolean authenticate(String username, String password, ServerSession session) {
-
-				System.out.println(username);
-				System.out.println(password);
-
-				return "ssh".equals(username) && "secret".equals(password);
-			}
-		});
+		sshServer.setPort(2232);
+		sshServer.setPasswordAuthenticator(new Autentify());
 		sshServer.setShellFactory(new SshEchoCommandFactory());
+		
 		sshServer.setKeyPairProvider(new SimpleGeneratorHostKeyProvider());
 		sshServer.start();
 	}

@@ -9,6 +9,7 @@ public class OSsimulator {
 
 	public OSsimulator(OutputStream out) {
 		this.out = out;
+		
 	}
 
 	public void parse(String command) {

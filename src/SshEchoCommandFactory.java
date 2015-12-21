@@ -5,9 +5,10 @@ public class SshEchoCommandFactory implements Factory<Command> {
 
 	@Override
 	public Command create() {
-		// TODO Auto-generated method stub
+		// TODO pase the username in to the echoShell
+		String username="julio";
 
-		return new EchoShell();
+		return new EchoShell(username);
 	}
 
 }

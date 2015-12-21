@@ -15,6 +15,11 @@ public class EchoShell extends Thread implements Command {
 	private ExitCallback callback;
 	private Environment environment;
 	private Thread thread;
+	private String username;
+
+	public EchoShell(String username) {
+		this.username=username;
+	}
 
 	@Override
 	public void destroy() {
@@ -59,7 +64,14 @@ public class EchoShell extends Thread implements Command {
 	public void run() {
 		String Command = "";
 		System.out.println("start");
-		OSsimulator OsObjec = new OSsimulator(out);
+		OSsimulator OsObjec = new OSsimulator(out, username);
+		try {
+			out.write(OsObjec.printTerm().getBytes());
+			out.flush();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		BufferedReader r = new BufferedReader(new InputStreamReader(in));
 		try {
@@ -68,18 +80,18 @@ public class EchoShell extends Thread implements Command {
 
 				while (((c = r.read()) != -1) && (!Thread.currentThread().isInterrupted())) {
 					char ch = (char) c;
-					System.out.println(ch);
 					out.write(ch);
-					if (ch == '\n') {
+					out.flush();
+					if ((ch == '\n')||(ch == '\r')) {
 						OsObjec.parse(Command);
 						Command = "";
-						out.write("\r\n".getBytes());
-
+						
+						
 					} else {
 						Command += ch;
 					}
 
-					out.flush();
+
 
 				}
 
