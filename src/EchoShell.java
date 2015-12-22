@@ -8,6 +8,8 @@ import org.apache.sshd.server.Command;
 import org.apache.sshd.server.Environment;
 import org.apache.sshd.server.ExitCallback;
 
+import os.OSsimulator;
+
 public class EchoShell extends Thread implements Command {
 
 	private InputStream in;

@@ -2,9 +2,12 @@ package os;
 
 public abstract class Commands {
 	private String name;
-	Commands(String name)
+	private OSsimulator OS;
+	public Commands(String name, OSsimulator OS)
 	{
 		this.name=name;
+		this.OS=OS;
+		
 	}
 	
 	boolean parse (String intruction)
@@ -20,7 +23,7 @@ public abstract class Commands {
 		return false;
 		
 	}
-	abstract void Action(String [] command);
+	abstract public void Action(String [] command);
 
 
 }

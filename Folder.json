@@ -1,0 +1,23 @@
+{
+	"folder": "",
+	"subfolder": [{
+			"folder": "etc",
+			"files": ["file1.txt", "file2.txt"],
+			"subfolder": []
+		}, {
+			"folder": "usr",
+			"files": ["file1.txt", "file2.txt"],
+
+			"subfolder": {
+				"folder": "root",
+				"subfolder": [{
+					"folder": "etc",
+					"files": ["file1.txt", "file2.txt"],
+					"subfolder": []
+				}]
+
+			}
+		}
+
+	]
+}
