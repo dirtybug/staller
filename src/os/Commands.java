@@ -2,7 +2,7 @@ package os;
 
 public abstract class Commands {
 	private String name;
-	private OSsimulator OS;
+	public OSsimulator OS;
 	public Commands(String name, OSsimulator OS)
 	{
 		this.name=name;
@@ -10,12 +10,12 @@ public abstract class Commands {
 		
 	}
 	
-	boolean parse (String intruction)
+	public boolean execute (String Arguments[] )
 	{
-		String[] args = intruction.split(" ");
-		if (args[0].equals(this.name))
+		
+		if (Arguments[0].equals(this.name))
 		{
-			Action(args);
+			Action(Arguments);
 			return true;
 		}
 		
@@ -24,6 +24,11 @@ public abstract class Commands {
 		
 	}
 	abstract public void Action(String [] command);
+
+	public void writeln(String text) {
+		this.OS.writeLn(text);
+		
+	}
 
 
 }

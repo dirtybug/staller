@@ -14,7 +14,15 @@ public class hostname extends Commands{
 
 	@Override
 	public void Action(String[] command) {
-		// TODO Auto-generated method stub
+		if (command.length==1)
+		{
+			super.writeln(OS.Hostname);
+		}
+		if (command.length==2)
+		{
+			OS.Hostname=command[2];
+		}
+
 		
 	}
 

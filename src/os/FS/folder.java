@@ -2,16 +2,11 @@ package os.FS;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
-
-import sun.misc.IOUtils;
 
 public class folder {
 	
@@ -49,6 +44,7 @@ public class folder {
 	        stringBuilder.append( line );
 	        stringBuilder.append( ls );
 	    }
+	    reader.close();
 
 	    return stringBuilder.toString();
 	}

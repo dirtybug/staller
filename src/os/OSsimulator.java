@@ -14,17 +14,18 @@ public class OSsimulator {
 	private OutputStream out;
 	String username = "";
 	String Folder = "";
-	String Hostname = "HoneyPot";
+	public String Hostname = "HoneyPot";
 
 	private String comandPropt = "$~:";
 	Map<String, Commands> CommandsMap;
-	private folder fileSys;
+	public folder fileSys;
 
 	public OSsimulator(OutputStream out, String username) {
 		this.out = out;
 		this.username = username;
 		this.fileSys=new folder();
-		CommandsMap = new HashMap();
+		CommandsMap = new HashMap<String, Commands>();
+		//add commands here
 		CommandsMap.put(ls.Name, new ls(this));
 		CommandsMap.put(hostname.Name, new hostname(this));
 	}
@@ -42,8 +43,11 @@ public class OSsimulator {
 			out.flush();
 			System.out.println(command);
 			// TODO:command line simulator here
-			if (CommandsMap.containsKey(command)) {
-				CommandsMap.get(command);
+			String[] args = command.split(" ");
+			if (CommandsMap.containsKey(args[0])) {
+				Commands comm = CommandsMap.get(command);
+				//TODO:something is wrong heres
+				comm.execute(args);
 			} else {
 
 				writeLn("invalid command");
@@ -58,7 +62,7 @@ public class OSsimulator {
 
 	}
 
-	void writeLn(String text) {
+	public void writeLn(String text) {
 		try {
 			out.write((text + "\n\r").getBytes());
 			out.flush();
